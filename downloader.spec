@@ -4,7 +4,7 @@
 a = Analysis(
     ['downloader.py'],
     pathex=[],
-    binaries=[],
+    binaries=[('C:\\Users\\Pichau\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\yt-dlp.exe', '.')],
     datas=[],
     hiddenimports=[],
     hookspath=[],

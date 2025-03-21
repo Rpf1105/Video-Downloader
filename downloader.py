@@ -1,20 +1,21 @@
 import os
 from os import mkdir
-
-
+#pyinstaller command: pyinstaller downloader.py --add-binary C:\Users\Pichau\AppData\Local\Programs\Python\Python313\Scripts\yt-dlp.exe:.
 def main():
     print("Bem vindo ao donwloader de video 8001")
     print("-"*40)
     folder = outputDir()
-    cmd = f'yt-dlp -P {folder} -f {fileExt()} {videoUrl()}'
+    cmd = f'_internal\\yt-dlp.exe -P {folder} -f {fileExt()} {videoUrl()}'
     os.system(cmd)
+    anotherOne()
     os.startfile(folder)
 
 def fileExt():
     print(
         "Qual tipo de arquivo voce deseja?:\n"
         "1-Video e audio\n"
-        "2-Apenas audio"
+        "2-Apenas audio (m4a)\n"
+        "3-Apenas audio (mp3)\n"
     )
     try:
         op = input()
@@ -31,8 +32,9 @@ def validInput(num):
         raise ValueError("Não foi digitado um numero")
     try:
         formats = {
-            1: "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b",
-            2: "ba[ext=m4a]"
+            1: "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/bv*+ba/b",
+            2: "ba[ext=m4a]",
+            3: "ba[ext=mp3]"
         }
         return formats[int(num)]
     except KeyError:
@@ -53,4 +55,14 @@ def msgError(e):
     print(f"Error: {e}")
     print("-"*40)
 
+def anotherOne():
+    again = ""
+    again = input(
+        "-"*40+
+        "\nVoce deseja baixar outro video?\n"
+        "Se sim digite s, se não digite qualquer outro valor\n"
+        +"-"*40
+    )
+    if again.lower() == "s":
+        return main()
 main()
